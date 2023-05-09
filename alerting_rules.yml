@@ -1,0 +1,18 @@
+groups:
+  - name: example
+    rules:
+      - alert: AlwaysFiring
+        expr: 1 > 0
+        for: 1s
+        labels:
+          severity: page
+        annotations:
+          summary: "High CPU ({{ $value }}), please cool me down!"
+
+      - alert: NodeIsDown
+        expr: up{job="local-machine"} != 1
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "The node is down"
